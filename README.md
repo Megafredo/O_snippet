@@ -2,7 +2,7 @@
 
 ## Mise en place du MCD :
 
-![MCD](_docs/MCD.jpg)
+![MCD](_docs/MCD.png)
 
 ## Mise en place du MLD : 
 
@@ -28,3 +28,9 @@
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
         "updated_at" TIMESTAMPTZ 
     );
+
+
+![BDD](_docs/BDD.png)
+
+
+## Mise en place des Models et de leurs relations

@@ -1,94 +1,69 @@
 //~ IMPORTATION MODULE
-// const Level = require('./level');
-// const Question = require('./question');
-// const Answer = require('./answer');
-// const Quiz = require('./quiz');
-const User = require('./user');
-// const Tag = require('./tag');
+const Category = require('./category.js');
+const Role = require('./role.js');
+const Snippet = require('./snippet.js');
+const User = require('./user.js');
+
+//~ -------------------------------------------- CATEGORY - USER
+// user a plusieur category
+User.hasMany(Category,{
+    foreignKey:'user_id',
+    as : 'categories'
+})
+
+// Category appartient a un user
+Category.belongsTo(User,{
+    foreignKey: 'user_id',
+    as : 'creator'
+})
+
+//~ -------------------------------------------- CATEGORY - SNIPPET
+// category possede plusieur snippet
+Category.belongsToMany(Snippet,{
+    through : 'category_has_snippet',
+    foreignKey : 'category_id',
+    otherKey : 'snippet_id',
+    as : 'snippets'
+})
+
+// snippet possede plusieur category
+Snippet.belongsToMany(Category,{
+    through : 'category_has_snippet',
+    foreignKey : 'snippet_id',
+    otherKey : 'category_id',
+    as : 'categories'
+})
+
+//~ -------------------------------------------- USER - SNIPPET
+
+// user a plusieur snippet
+User.hasMany(Snippet,{
+    foreignKey:'user_id',
+    as : 'snippets'
+})
+
+// snippet appartient a un user
+Snippet.belongsTo(User,{
+    foreignKey: 'user_id',
+    as : 'user'
+})
+
+//~ -------------------------------------------- USER - ROLE
+
+// role a plusieur user
+Role.hasMany(User,{
+    foreignKey: 'role_id',
+    as : 'users'
+})
+
+// user appartient a un role
+User.belongsTo(Role,{
+    foreignKey:'role_id',
+    as : 'role'
+})
 
 
 
-// // Une question appartien a un niveau 
-// Question.belongsTo(Level, {
-//     foreignKey: "level_id",
-//     as: "level",
-// });
-
-// // Un niveau a plusieur questions
-// // On fait appele au champ level_id de Question pour pouvoir réaliser la relation dans le sens inverse
-// Level.hasMany(Question, {
-//     foreignKey: "level_id",
-//     as: "questions"
-// });
 
 
-// // Question à plusieurs réponses 
-// Question.hasMany(Answer, {
-//     foreignKey: "question_id",
-//     as: "answers"
-// });
-
-// // Réciproque : Une réponse appartient a une question
-// Answer.belongsTo(Question, {
-//     foreignKey: "question_id",
-//     as: "question"
-// });
-
-// // ATTETION Cas particulier : QUESTION ET REPONSE SONT LIEES DE DEUX FACON ! 
-// // Une question appartient UNE bonne réponse
-// Question.belongsTo(Answer, {
-//     foreignKey : "answer_id",
-//     as: "good_answer"
-// });
-
-
-// // Un Quiz à PLUSIEURS Questions
-// // Quiz has Many Questions
-// Quiz.hasMany(Question, {
-//     foreignKey: "quiz_id",
-//     as: "questions"
-// });
-
-// // Réciproque : UNE question appartient à UN quiz
-// // Question belongs to Quiz
-// Question.belongsTo(Quiz, {
-//     foreignKey: "quiz_id",
-//     as: "quiz"
-// });
-
-
-// // UN Quiz appartient à UN User 
-// Quiz.belongsTo(User, {
-//     foreignKey: "user_id",
-//     as: "user"
-// });
-
-// // Réciproque : UN User possède PLUSIEURS Quiz
-// User.hasMany(Quiz, {
-//     foreignKey: "user_id",
-//     as: "quizzes"
-// });
-
-
-// // -------------------------------------------------------
-// // des Quiz appartiennent à PLUSIEURS tags
-// Quiz.belongsToMany(Tag, {
-//     foreignKey: "quiz_id",
-//     through: "quiz_has_tag",
-//     otherKey: "tag_id",
-//     as: "tags",
-// });
-
-// // des Tag appartiennent à PLUSIEURS Quiz ... la réciproque
-// Tag.belongsToMany(Quiz, {
-//     foreignKey: "tag_id",
-//     through: "quiz_has_tag",
-//     otherKey: "quiz_id",
-//     as: "quizzes"
-// });
-
-
-// module.exports = { Level, Question, Answer, Quiz, User, Tag }
-
-
-module.exports = {User};
+module.exports = { User, Category, Role, Snippet };

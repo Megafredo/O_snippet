@@ -2,9 +2,10 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
-class User extends Model {}
+class Snippet extends Model {}
 
-User.init({
+Snippet.init({
+
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -13,38 +14,30 @@ User.init({
         allowNull: false
     },
 
-    username: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        unique: true,
-    },
-
-    email: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        unique: true,
-    },
-
-    password: {
+    title: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
-
-    role_id:{
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+    link: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+    date: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    user_id:{
         type: DataTypes.INTEGER,
         allowNull: false,
-    },
-
-    info: {
-        type: DataTypes.VIRTUAL,
-        get(){
-            return `Utilisateur : ${this.username}, with email : ${this.email}`;
-        }
     }
 
 }, {
     sequelize,
-    tableName: 'user'
+    tableName: 'snippet'
 });
 
-module.exports = User;
+module.exports = Snippet;

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node-dev --notify=false index.js",
-    "dev" : "npx nodemon --inspect index.js"
+    "dev" : "npx nodemon --inspect index.js",
+    "sql": "psql -U osnippet -d osnippet -f ./data/01_tableData_osnippet.sql"
   },
   "keywords": [],
   "author": "Fredo0",

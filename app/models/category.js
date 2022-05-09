@@ -2,9 +2,10 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
-class User extends Model {}
+class Category extends Model {}
 
-User.init({
+Category.init({
+
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -13,38 +14,41 @@ User.init({
         allowNull: false
     },
 
-    username: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        unique: true,
-    },
-
-    email: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        unique: true,
-    },
-
-    password: {
+    name: {
         type: DataTypes.TEXT,
         allowNull: false,
     },
 
-    role_id:{
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+
+    image: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
+
+    user_id:{
         type: DataTypes.INTEGER,
         allowNull: false,
     },
 
-    info: {
-        type: DataTypes.VIRTUAL,
-        get(){
-            return `Utilisateur : ${this.username}, with email : ${this.email}`;
-        }
+    created_at:{
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue : DataTypes.NOW,
+    },
+
+    upgrated_at : {
+        type: DataTypes.DATE,
+        allowNull: true,
     }
+
 
 }, {
     sequelize,
-    tableName: 'user'
+    tableName: 'category'
 });
 
-module.exports = User;
+module.exports = Category;
