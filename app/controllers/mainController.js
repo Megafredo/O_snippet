@@ -1,22 +1,19 @@
 //~ IMPORTATION 
 const { User } = require('../models');
-const { _500 } = require('./errorController');
+const { _500 } = require('./errorController.js');
 
 module.exports = {
 
     async renderHome(req,res){
         try {
 
-            const user = await User.findAll({
-                order:['lastname']
-            });
-
-            // res.json(user)
-            res.render('pages/home', {title: 'My Home Page', name : user[0].name})
+            
+            
+   
+            res.render('pages/home', {title: 'My Home Page'})
         } catch(err) {
             _500(err,req,res);
         }
-
 
     }
 

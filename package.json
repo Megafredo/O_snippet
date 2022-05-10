@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "start": "node-dev --notify=false index.js",
-    "dev" : "npx nodemon --inspect index.js",
+    "dev": "npx nodemon --inspect index.js",
     "sql": "psql -U osnippet -d osnippet -f ./data/01_tableData_osnippet.sql"
   },
   "keywords": [],
   "author": "Fredo0",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.7",
+    "email-validator": "^2.0.4",
     "express": "^4.18.1",
     "express-session": "^1.17.2",
     "pg": "^8.7.3",

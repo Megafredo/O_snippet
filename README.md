@@ -34,3 +34,13 @@
 
 
 ## Mise en place des Models et de leurs relations
+
+Rajout de la valeur courante de chacune des séquence en selectionnant l'id max
+
+*Postgres avec le fait d'ajouter IDENTITY BY DEFAULT au lieu de ALWAYS ne met pas à jour le curseur de l'incrément de la séquence de façon implicite !*
+
+    SELECT setval('category_id_seq', (SELECT MAX(id) from "category"));
+    SELECT setval('role_id_seq', (SELECT MAX(id) from "role"));
+    SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));
+    SELECT setval('snippet_id_seq', (SELECT MAX(id) from "snippet"));
+    SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));

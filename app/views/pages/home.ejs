@@ -2,18 +2,68 @@
 
 <!--     <link rel="stylesheet" href="/css/reset.css"> -->
 <link rel="stylesheet" href="/css/style.css">
+
 </head>
 
-<body>
+<body >
 
-    <div class="full-screen">
+   
+    <div class="full-screen"><div>
         <div>
-            <h1>Home Page</h1>
-            <h2>Welcome</h2>
+            <h1>O'Snippet</h1>
+            <% if (locals.error){ %>
+                <div class="error-container">
+                        <%= error  %> 
+                    </div>
+                        <% }  %>
             <br>
-            <a class="button-line" href="#!">More</a>
         </div>
     </div>
+    <% if (locals.signUpValid){ %>
+        <div class="valide-container">
+                <%= signUpValid  %> 
+            </div>
+                <% }  %>
+            
+   
+        <div class="container right-panel-active">
+         
+            <!-- Sign In -->
+            <div class="container__form container--signup">
+                <form action="/signin" class="form" id="form2" method="POST">
+                    <h2 class="form__title">connexion</h2>
+                    <input type="email" placeholder="Email" name="email_connexion" class="input" required />
+                    <input type="password" placeholder="Mot de passe" name="password_connexion" class="input" required />
+                    <a href="#" class="link">Mot de passe oublié ?</a>
+                    <button class="btn" type="submit">Se connecter</button>
+                </form>
+            </div>
+        
+            <!-- Sign Up -->
+            <div class="container__form container--signin">
+                <form action="/signup" class="form" id="form1" method="POST">
+                    <h2 class="form__title">Inscription</h2>
+                    <input type="text" placeholder="Utilisateur" class="input" name="username" required/>
+                    <input type="email" placeholder="Email" class="input" name="email" required/>
+                    <input type="password" placeholder="Mot de passe" name="password" class="input" required/>
+                    <input type="password" placeholder="Confirmation" name="password_confirm" class="input" required/>
+                    <button class="btn" type="submit">S'inscrire</button>
+                </form>
+            </div>
+        
+            <!-- Overlay -->
+            <div class="container__overlay">
+                <div class="overlay">
+                    <div class="overlay__panel overlay--left">
+                        <button class="btn" id="signUp">Inscription</button>
+                    </div>
+                    <div class="overlay__panel overlay--right">
+                        <button class="btn" id="signIn">Connexion</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </div>
 
 <%- include('../partials/foot')  %>

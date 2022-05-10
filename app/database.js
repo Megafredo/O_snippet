@@ -12,8 +12,8 @@ function getConnexion(){
             
             define: {
                 timestamps: false,
-                //createdAt = "created_at"
-                //updatedAt = "updated_at"
+                createdAt : "created_at",
+                updatedAt : "updated_at"
             },
 
             host: process.env.DB_HOST,
